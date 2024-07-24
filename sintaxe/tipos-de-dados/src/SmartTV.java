@@ -28,4 +28,5 @@ public class SmartTV {
     public void mudarCanal(int novoCanal) {
         canal = novoCanal;
     }
+
 }
