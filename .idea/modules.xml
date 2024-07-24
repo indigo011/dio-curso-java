@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/dio-curso-java.iml" filepath="$PROJECT_DIR$/.idea/dio-curso-java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sintaxe/sintaxe.iml" filepath="$PROJECT_DIR$/sintaxe/sintaxe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sintaxe/tipos-de-dados/tipos-de-dados.iml" filepath="$PROJECT_DIR$/sintaxe/tipos-de-dados/tipos-de-dados.iml" />
+    </modules>
+  </component>
+</project>
