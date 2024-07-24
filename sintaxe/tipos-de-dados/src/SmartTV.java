@@ -1,20 +1,5 @@
 public class SmartTV {
     boolean ligada = true;
-
-    public int getVolume() {
-        return volume;
-    }
-
-    
-
-    public boolean isLigada() {
-        return ligada;
-    }
-
-    public void setLigada(boolean ligada) {
-        this.ligada = ligada;
-    }
-
     int canal = 12;
     int volume = 20;
 
@@ -43,5 +28,4 @@ public class SmartTV {
     public void mudarCanal(int novoCanal) {
         canal = novoCanal;
     }
-
 }
