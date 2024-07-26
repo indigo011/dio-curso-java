@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 public class ProcessoSeletivo {
@@ -55,6 +56,20 @@ public class ProcessoSeletivo {
 
         if (!flag) {
             System.out.println("\tNenhum candidato foi selecionado \uD83D\uDE41");
+        }
+    }
+
+    static void ligar(String[] selecionados) {
+        int result = 0;
+        int tentativa;
+
+        for (String candidato : selecionados) {
+            for (tentativa = 1; tentativa <= 3 && result == 0; tentativa++) {
+                System.out.printf("LIGANDO PARA %s... [%d/3] TENTATIVAS\n");
+                result = JOptionPane.showConfirmDialog(null, candidato + " atendeu a ligação?",
+                        "Ligando...", JOptionPane.YES_NO_OPTION);
+                System.out.printf("%s %s A LIGAÇÃO\n", candidato, result == 1 ? "ATENDEU" : "NÃO ATENDEU");
+            }
         }
     }
 }
