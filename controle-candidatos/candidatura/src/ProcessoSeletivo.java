@@ -1,11 +1,14 @@
 import javax.swing.*;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ProcessoSeletivo {
     public static void main(String[] args) {
-        String[] candidatos = {"Felipe", "Marcia", "Jose", "Joao", "Augusta", "Luiz", "Rafael", "Higor", "Heitor", "Paloma", "Guilherme"};
+        String[] candidatos = {"Felipe", "Márcia", "José", "João", "Augusta", "Luiz", "Rafael", "Higor", "Heitor", "Paloma", "Guilherme"};
+        String[] candidatosSelecionados = selecionarCandidatos(candidatos, 2000);
+        imprimirSelecionados(candidatosSelecionados);
+        ligar(candidatosSelecionados);
 
-        imprimirSelecionados(selecionarCandidatos(candidatos, 2000));
     }
 
 
@@ -26,13 +29,13 @@ public class ProcessoSeletivo {
     //CASE 2
     static String[] selecionarCandidatos(String[] candidatos, double salarioBase) {
         String[] candidatosSelecionados = new String[5];
-        var scanner = new Scanner(System.in);
-
         int count = 0;
-        for (int i = 0; i < candidatos.length && count < 5; i++) {
-            System.out.print("Informe o salário pretendido: ");
-            double salarioPretendido = scanner.nextDouble();
 
+        for (int i = 0; i < candidatos.length && count < 5; i++) {
+            double salarioPretendido = (double) sortear(1500, 3000);
+            System.out.printf(
+                    "Candidato %d: %s\n\tSalário pretendido: %.2f\n\tSituação: ", i+1, candidatos[i], salarioPretendido
+            );
             if (analisarCandidato(salarioBase, salarioPretendido)) {
                 candidatosSelecionados[count] = candidatos[i];
                 count++;
@@ -44,7 +47,8 @@ public class ProcessoSeletivo {
 
     //CASE 3
     static void imprimirSelecionados(String[] candidatosSelecionados) {
-        System.out.println("CANDIDATOS SELECIONADOS --------------");
+        System.out.println("CANDIDATOS SELECIONADOS ----------------------");
+
         boolean flag = false;
 
         for (String candidato : candidatosSelecionados) {
@@ -57,19 +61,30 @@ public class ProcessoSeletivo {
         if (!flag) {
             System.out.println("\tNenhum candidato foi selecionado \uD83D\uDE41");
         }
+
+        System.out.println("----------------------------------------------\n");
     }
 
     static void ligar(String[] selecionados) {
-        int result = 0;
-        int tentativa;
-
         for (String candidato : selecionados) {
-            for (tentativa = 1; tentativa <= 3 && result == 0; tentativa++) {
-                System.out.printf("LIGANDO PARA %s... [%d/3] TENTATIVAS\n");
-                result = JOptionPane.showConfirmDialog(null, candidato + " atendeu a ligação?",
-                        "Ligando...", JOptionPane.YES_NO_OPTION);
-                System.out.printf("%s %s A LIGAÇÃO\n", candidato, result == 1 ? "ATENDEU" : "NÃO ATENDEU");
+            int result = 1;
+            int tentativa;
+
+            if (candidato == null) {
+                break;
             }
+
+            for (tentativa = 1; tentativa <= 3 && result == 1; tentativa++) {
+                System.out.printf("\tLigando para %s... Tentativa [%d/3]\n", candidato, tentativa);
+                result = sortear(0,1);
+            }
+            System.out.printf("\n%s %s\n\n", candidato, result == 1 ? "não atendeu 😭" : "atendeu 😍");
         }
+    }
+
+    static int sortear(int min,int max) {
+        Random random = new Random();
+
+        return random.nextInt(max - min + 1) + min;
     }
 }
